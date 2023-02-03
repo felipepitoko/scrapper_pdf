@@ -15,7 +15,7 @@ Para executa-lo localmente, primeiro instale as bibliotecas utilizadas. Na pasta
 pip install -r requirements.txt
 ```
 
-Apos isso, e possivel iniciar o servidor Flask executando o script <b>ap..py</b>:
+Apos isso, e possivel iniciar o servidor Flask executando o script <b>app.py</b>:
 
 ```
 python app.py
