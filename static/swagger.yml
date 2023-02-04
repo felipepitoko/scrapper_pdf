@@ -1,0 +1,164 @@
+swagger: '2.0'
+info:
+  title: IPCA API
+  version: '1.0'
+host: localhost:5002
+basePath: /
+schemes:
+  - http
+paths:
+
+  /consultaIPCACompleta:
+    get:
+      description: Get a list of all IPCA records
+      produces:
+        - application/json
+      responses:
+        200:
+          description: A list of IPCA records
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                ano:
+                  type: string
+                  example: "2023"
+                mes:
+                  type: string
+                  example: "janeiro"
+                baseIPCA:
+                  type: number
+                  format: float
+                  example: 7.258367
+                createdAt:
+                  type: string
+                  format: date-time
+                  example: "2023-02-03 19:01:15"
+                updatedAt:
+                  type: string
+                  format: date-time
+                  example: null
+
+  /consultaIPCA:
+    get:
+      description: Get a list of IPCA records for a specific year and month
+      produces:
+        - application/json
+      parameters:
+        - name: ano
+          in: query
+          type: string
+          required: true
+          example: "2023"
+        - name: mes
+          in: query
+          type: string
+          required: true
+          example: "janeiro"
+      responses:
+        200:
+          description: A list of IPCA records for a specific year and month
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                ano:
+                  type: string
+                  example: "2023"
+                mes:
+                  type: string
+                  example: "janeiro"
+                baseIPCA:
+                  type: number
+                  format: float
+                  example: 7.258367
+                createdAt:
+                  type: string
+                  format: date-time
+                  example: "2023-02-03 19:01:15"
+                updatedAt:
+                  type: string
+                  format: date-time
+                  example: null
+
+  /inserirIPCA:
+    post:
+      description: Add a new IPCA record
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: IPCA
+          required: true
+          schema:
+            type: object
+            properties:
+              ano:
+                type: string
+                example: "2023"
+              mes:
+                type: string
+                example: "agosto"
+              baseIPCA:
+                type: number
+                format: float
+                example: 3.1234
+      responses:
+        201:
+          description: IPCA record successfully added
+        400:
+          description: Invalid request
+
+  /excluirIPCA:
+    delete:
+      description: Delete an IPCA record
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: IPCA
+          required: true
+          schema:
+            type: object
+            properties:
+              ano:
+                type: string
+                example: "2023"
+              mes:
+                type: string
+                example: "agosto"
+      responses:
+        204:
+          description: IPCA record successfully deleted
+        400:
+          description: Invalid request
+
+  /atualizarIPCA:
+    put:
+      description: Update an IPCA record
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: IPCA
+          required: true
+          schema:
+            type: object
+            properties:
+              ano:
+                type: string
+                example: "2023"
+              mes:
+                type: string
+                example: "agosto"
+              baseIPCA:
+                type: number
+                format: float
+                example: 4.000
+      responses:
+        200:
+          description: IPCA record successfully updated
+        400:
+          description: Invalid request

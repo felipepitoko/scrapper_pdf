@@ -21,6 +21,8 @@ Apos isso, e possivel iniciar o servidor Flask executando o script <b>app.py</b>
 python app.py
 ```
 
-Com o servidor iniciado, e possivel acessar os endpoints via HTTP, conforme especificado na documentacao no arquivo:
+Com o servidor iniciado, e possivel acessar a documentacao via swagger, na rota:
 
-<b>documentacao.json</b>
+```
+http://localhost:5002/swagger
+```

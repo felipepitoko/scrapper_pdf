@@ -1,6 +1,17 @@
 from flask import Flask, request, jsonify, json
 from database import Database
 from dadosOriginais import DadosOriginais
+from flask_swagger_ui import get_swaggerui_blueprint
+
+SWAGGER_URL = '/swagger'
+API_URL = '/static/swagger.yml'
+swaggerui_blueprint = get_swaggerui_blueprint(
+  SWAGGER_URL,
+  API_URL,
+  config={
+    'app_name': "My Flask Application"
+  }
+)
 
 df = DadosOriginais.tratarDados()
 connection = Database.create_connection()
@@ -9,6 +20,8 @@ Database.alimentar_primeiros_dados(connection,df)
 connection.close()
 
 app = Flask(__name__)
+
+app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
 @app.route('/consultaIPCACompleta', methods=['GET'])
 def consulta_completa():
@@ -167,4 +180,4 @@ def excluir_registro():
     )
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5002)
+    app.run(debug=False, port=5002)
